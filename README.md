@@ -50,23 +50,35 @@ Additionally, the following libraries (already included with Python) are used: [
 A TigerGraph Cloud Portal account will be required to run this demo. Make sure to update all the necessary information within the first few lines of
 "TG-helpers.py". The schema utilized in this graph is fleshed out below:
 
-- Vertex: verse | (PRIMARY ID) id - STRING, song_title - STRING, song_verse - STRING, song_time - STRING, song_line - INT, comm_id - INT
-- Edge: similarity | weight - FLOAT
+Vertex: verse
+- (PRIMARY ID) id - STRING
+- song_title - STRING
+- song_verse - STRING
+- song_time - STRING
+- song_line - INT
+- comm_id - INT
+
+Edge: similarity
+- weight - FLOAT
+
+Kindly find the GraphStudio link here: https://sing-along.i.tgcloud.io/
 
 
 ## Usage
 
-To use, simply install the required packages (pyaudio, keyboard, speech_recognition) and run singAlong-TG.py. Ensure that your device has a functioning microphone. To begin, the following information regarding your loaded songs should be printed (default is four songs).
+To use, simply install the required packages and run singAlong-TG.py. Ensure that your device has a functioning microphone. To begin, the following information regarding your loaded songs should be printed (default is four songs).
 
 ![Example 1](./Screenshots/README_Images/usage01.jpg)
 
-Next, you will be prompted to sing with the word “Listening!”. Make sure to sing loudly and clearly so the microphone can recognize you. It should take no longer than a few seconds. For demo examples, take a look at the usage videos included.
+Next, you will be prompted to sing with the word “Listening!”. Make sure to sing loudly and clearly so the microphone can recognize you. It should take no longer than a few seconds. For demo examples, take a look at the usage videos.
 
 Once you’ve sung a word, the program will attempt to translate your vocal input. If unsuccessful or if the detected verse does not exist within the song database, an error message will be printed and the program will end.
 
 ![Example 2](./Screenshots/README_Images/usage02.jpg)
 
-If the program successfully translates and detects a correct verse, it will print out the detected song, artist, verse, line number, and timestamp of the next verse. It will then begin to play the song starting from that timestamp. If you wish to quit at any time, simply enter Q. If any other input is entered, the song will play until it has finished. At the end, you will be prompted to continue singing or to quit the program. If you wish to quit, simply enter “Q” and an exit message will be displayed. Otherwise, the program will continue and begin a new session for the user to record their vocal input.
+If the program successfully translates and detects a correct verse, it will print out the detected song, artist, verse, line number, and timestamp of the next verse. It will then begin to play the song starting from that timestamp. If you wish to quit at any time, simply enter Q. If any other input is entered, the song will play until it has finished.
+
+At the end, you will be prompted to continue singing or to quit the program. If you wish to quit, simply enter “Q” and an exit message will be displayed. Otherwise, the program will continue and begin a new session for the user to record their vocal input.
 
 ![Example 3](./Screenshots/README_Images/usage03.jpg)
 
@@ -78,7 +90,9 @@ The program comes loaded with three songs, all from Disney’s tangled:
 2. "I See The Light" - Mandy Moore
 3. "I've Got A Dream" - Mandy Moore
 
-Currently, automatic song addition is not supported. To add new songs, users must create the following files and place them in the appropriate directories. Follow the instructions as described below. Make sure to keep the naming convention in mind!
+Just for fun, a short "Happy Birthday" recording is thrown in as well :)
+
+Currently, automatic song addition is not supported. To add new songs, users must create the following files and place them in the appropriate directories. Follow the instructions below and keep the naming convention in mind!
 
 **Audio file**
 
@@ -94,26 +108,18 @@ Currently, automatic song addition is not supported. To add new songs, users mus
 
 * This must be a .txt file containing the timestamp of each verse.
 * It is a modified version of the standard [LRC](https://en.wikipedia.org/wiki/LRC_(file_format))
-* It contains the same number of lines as the lyric file
-* Each line simply containing a timestamp (ex. "0:07" or "1:26")
+* Each line simply containing a timestamp (ex. "0:07" or "1:26") and verse
+* For example, "0:09|All those days watching from the windows"
 * Follow the same naming convention as above, but with "\___txt"
 
 
-## Roadmap
+## GSQL Query
 
-There are a lot of ways I wish this project to continue growing. Here are a few:
+Here's the GSQL query "connComp".
 
-1. *Automating song file and LRC file generation*
+![GSQL](./Screenshots/README_Images/GSQL01.jpg)
 
-> As of now, I currently have to download songs, download lyrics, and create my own LRC files by playing through each song. I wish to automate this process using new technologies similar to [automated lyric synchronization](https://ieeexplore.ieee.org/document/4432643). This will allow for greater usage, beyond just the three songs it currently supports.
-
-3. *Allowing for more music control feature during playback*
-
-> As of right now, the user only has the option to stop playback. To augment the user experience, I wish to add features such as adjusting volume, pausing and resuming, rewinding, and forwarding. Additionally, displaying more lyrics beyond just the next line would be a nice feature, truly allowing for karaoke.
-
-4. *Converting to a faster compiled language, such as C++*
-
-> Since this program runs in python, as it grows it will inevitably get slower due to having more songs to parse through. Rewriting it in a faster language will allow for a faster experience for users.
+For advanced GSQL algorithms, make sure to check out the [GSQL Graph Algorithm Library](https://docs.tigergraph.com/tigergraph-platform-overview/graph-algorithm-library)
 
 ## References
 
